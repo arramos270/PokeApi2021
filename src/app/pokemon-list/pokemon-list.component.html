@@ -2,17 +2,23 @@
 <button mat-stroked-button (click)="getPokemons(50)">50</button>
 <button mat-stroked-button (click)="getPokemons(100)">100</button>
 <button mat-stroked-button (click)="getPokemons(200)">200</button>
+<button mat-stroked-button (click)="getPokemons(1200)">Todos</button>
+
+<hr />
+<p>Desplegable que refresca la lista cuando pulso en el botón Filtrar</p>
 
 <mat-form-field appearance="fill">
     <mat-label>Elementos por página</mat-label>
     <mat-select [(ngModel)]="pokemonNumberSelected">
-        <mat-option value="50">50</mat-option>
-        <mat-option value="100">100</mat-option>
-        <mat-option value="200">200</mat-option>
+        <mat-option value="50">50 pokémons</mat-option>
+        <mat-option value="100">100 pokémons</mat-option>
+        <mat-option value="200">200 pokémons</mat-option>
     </mat-select>
 </mat-form-field>
 
-<p>Has seleccionado {{pokemonNumberSelected}}</p>
+<button mat-stroked-button (click)="getPokemonList()">Filtrar</button>
+
+<p>Has seleccionado... {{pokemonNumberSelected}}</p>
 
 <hr />
 
@@ -27,5 +33,5 @@
 </mat-form-field>
 
 <ul>
-    <li *ngFor="let pokemon of pokemonList">{{pokemon.name}}</li>
+    <app-pokemon-item *ngFor="let pokemon of pokemonList; let i = index" [pokemonInput]="pokemon"></app-pokemon-item>
 </ul>
